@@ -15,9 +15,8 @@ app.use(express.json());
 
 //Api routes
 app.get('/', (req, res) => res.send('Hello World!'))
-app.use("/api/user", userRouter);
-app.use("/api/user/webhooks", express.raw({ type: "application/json" }));  
+app.use('/api/user', userRouter)
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Server running on port ${port}`)
 })
