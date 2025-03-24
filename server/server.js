@@ -15,7 +15,7 @@ app.use(express.json());
 
 //Api routes
 app.get('/', (req, res) => res.send('Hello World!'))
-app.use('/api/user', userRouter)
+app.use('/user', userRouter)
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`)
