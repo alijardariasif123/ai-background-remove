@@ -21,7 +21,6 @@ const clerkWebhooks = async (req, res) => {
                 const userdata = {
                     clerkId: data.id,
                     email: data.email_addresses?.[0]?.email_address || null,
-                    phoneNo: data.phone_numbers?.[0]?.phone_number || null,
                     firstName: data.first_name || "",
                     lastName: data.last_name || "",
                     photo: data.image_url || ""
@@ -35,7 +34,6 @@ const clerkWebhooks = async (req, res) => {
             case "user.updated": {
                 const userdata = {
                     email: data.email_addresses?.[0]?.email_address || null,
-                    phoneNo: data.phone_numbers?.[0]?.phone_number || null,
                     firstName: data.first_name || "",
                     lastName: data.last_name || "",
                     photo: data.image_url || ""
