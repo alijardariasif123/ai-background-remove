@@ -13,7 +13,7 @@ await connectDB();
 app.use(cors());
 
 // ❌ express.json() को webhooks से पहले मत लगाओ
-app.use('/api/user/webhooks', express.raw({ type: 'application/json' }));
+app.use('/user/webhooks', express.raw({ type: 'application/json' }));
 app.use(express.json()); // बाकी API के लिए JSON parser
 
 //Api routes
