@@ -1,22 +1,19 @@
-
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import connectDB from './configs/mongodb.js';
 import userRouter from './routes/userRoutes.js';
 
-//App config
 const port = process.env.PORT || 4000;
 const app = express();
 await connectDB();
 
 app.use(cors());
+app.use(express.json()); // सभी API के लिए JSON parser
 
-// ❌ express.json() को webhooks से पहले मत लगाओ
+// Webhook के लिए express.raw() का सही उपयोग
 app.use('/user/webhooks', express.raw({ type: 'application/json' }));
-app.use(express.json()); // बाकी API के लिए JSON parser
 
-//Api routes
 app.get('/', (req, res) => res.send('Hello World!'));
 app.use('/user', userRouter);
 

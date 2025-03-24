@@ -3,10 +3,10 @@ import userModel from "../models/userModel.js";
 
 const clerkWebhooks = async (req, res) => {
     try {
-        // Payload को string में convert करो
-        const payload = req.body.toString();  
+        // Raw body payload को सीधे verify करो
+        const payload = req.body;  
 
-        // Clerk headers को लो
+        // Clerk headers
         const headers = {
             "svix-id": req.headers["svix-id"],
             "svix-timestamp": req.headers["svix-timestamp"],
@@ -23,10 +23,10 @@ const clerkWebhooks = async (req, res) => {
             case "user.created": {
                 const userdata = {
                     clerkId: data.id,
-                    email: data.email_addresses[0].email_address,
-                    firstName: data.first_name,
-                    lastName: data.last_name,
-                    photo: data.image_url
+                    email: data.email_addresses[0]?.email_address || "",
+                    firstName: data.first_name || "",
+                    lastName: data.last_name || "",
+                    photo: data.image_url || ""
                 };
 
                 await userModel.create(userdata);
@@ -36,10 +36,10 @@ const clerkWebhooks = async (req, res) => {
 
             case "user.updated": {
                 const userdata = {
-                    email: data.email_addresses[0].email_address,
-                    firstName: data.first_name,
-                    lastName: data.last_name,
-                    photo: data.image_url
+                    email: data.email_addresses[0]?.email_address || "",
+                    firstName: data.first_name || "",
+                    lastName: data.last_name || "",
+                    photo: data.image_url || ""
                 };
 
                 await userModel.findOneAndUpdate({ clerkId: data.id }, userdata);
