@@ -15,10 +15,7 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(`${process.env.MONGODB_URI}`, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
+        await mongoose.connect(`${process.env.MONGODB_URI}/bg-removal`)
 
         console.log("✅ MongoDB connected successfully");
     } catch (error) {
