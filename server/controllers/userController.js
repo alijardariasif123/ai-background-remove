@@ -1,65 +1,65 @@
-import { Webhook } from "svix";
-import userModel from "../models/userModel.js";
+import { Webhook } from 'svix'
+import userModel from '../models/userModel.js'
 
 const clerkWebhooks = async (req, res) => {
-    try {
-        // Payload को string में convert करो
-        const payload = req.body.toString();  
 
-        // Clerk headers को लो
-        const headers = {
+    try {
+        
+        // create a svix instance with clerk webhook secret
+        const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET)
+
+        await whook.verify(JSON.stringify(req.body),{
             "svix-id": req.headers["svix-id"],
             "svix-timestamp": req.headers["svix-timestamp"],
             "svix-signature": req.headers["svix-signature"]
-        };
+        })
 
-        // Svix Webhook instance बनाओ
-        const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET);
-        const event = whook.verify(payload, headers); // Verify the Webhook
-
-        const { data, type } = event; // Event data को लो
-
+        const {data, type} = req.body
         switch (type) {
             case "user.created": {
-                const userdata = {
+                const userData = {
                     clerkId: data.id,
                     email: data.email_addresses[0].email_address,
                     firstName: data.first_name,
                     lastName: data.last_name,
                     photo: data.image_url
-                };
+                }
 
-                await userModel.create(userdata);
-                res.json({ success: true });
-                break;
+                await userModel.create(userData)
+                res.json({})
+
+                break
             }
-
             case "user.updated": {
-                const userdata = {
+                const userData = {
                     email: data.email_addresses[0].email_address,
                     firstName: data.first_name,
                     lastName: data.last_name,
                     photo: data.image_url
-                };
+                }
 
-                await userModel.findOneAndUpdate({ clerkId: data.id }, userdata);
-                res.json({ success: true });
-                break;
+                await userModel.findOneAndUpdate({clerkId: data.id}, userData)
+                res.json({})
+
+                break
             }
-
             case "user.deleted": {
-                await userModel.findOneAndDelete({ clerkId: data.id });
-                res.json({ success: true });
+                await userModel.findOneAndDelete({clerkId: data.id})
+                res.json({})
+
+                break
+            }   
                 break;
-            }
-
+        
             default:
-                res.status(400).json({ success: false, message: "Unknown event type" });
+                break;
         }
-    } catch (error) {
-        console.error("❌ Webhook Error:", error.message);
-        res.status(400).json({ success: false, message: "Invalid webhook request" });
-    }
-};
 
-export { clerkWebhooks };
+    } catch (error) {
+        console.log(error.message)
+        res.json({success:false, message: error.message})
+        
+    }
+}
+
+export {clerkWebhooks}

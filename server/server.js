@@ -4,21 +4,19 @@ import cors from 'cors';
 import connectDB from './configs/mongodb.js';
 import userRouter from './routes/userRoutes.js';
 
-//App config
-const port = process.env.PORT || 4000;
+
+// api config
+const PORT = process.env.PORT || 4000;
 const app = express();
 await connectDB();
 
+//middleware
+app.use(express.json());
 app.use(cors());
 
-// ❌ express.json() को webhooks से पहले मत लगाओ
-app.use('/user/webhooks', express.raw({ type: 'application/json' }));
-app.use(express.json()); // बाकी API के लिए JSON parser
+//api routes
+app.get('/', (req, res) => res.send('api working'));
+app.use('/api/user', userRouter)
 
-//Api routes
-app.get('/', (req, res) => res.send('Hello World!'));
-app.use('/user', userRouter);
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+//listen
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
