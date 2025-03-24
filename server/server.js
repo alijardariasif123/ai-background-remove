@@ -4,23 +4,21 @@ import cors from 'cors';
 import connectDB from './configs/mongodb.js';
 import userRouter from './routes/userRoutes.js';
 
-// App config
+//App config
 const port = process.env.PORT || 4000;
 const app = express();
+await connectDB();
 
-// Middleware
 app.use(cors());
-app.use(express.json());
 
-// Connect Database & Start Server
-connectDB().then(() => {
-    app.listen(port, () => {
-        console.log(`✅ Server running on port ${port}`);
-    });
-}).catch(err => {
-    console.error("❌ MongoDB Connection Failed:", err);
-});
+// ❌ express.json() को webhooks से पहले मत लगाओ
+app.use('/user/webhooks', express.raw({ type: 'application/json' }));
+app.use(express.json()); // बाकी API के लिए JSON parser
 
-// API routes
+//Api routes
 app.get('/', (req, res) => res.send('Hello World!'));
 app.use('/user', userRouter);
+
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
