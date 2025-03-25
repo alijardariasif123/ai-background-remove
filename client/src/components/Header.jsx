@@ -4,7 +4,7 @@ import { AppContext } from '../context/appContext'
 
 const Header = () => {
 
-    const {removeBg} = useContext(AppContext)
+    const { removeBg } = useContext(AppContext)
 
   return (
     <div className='flex item-center justify-between max-sm:flex-col-reverse gap-y-20 px-4 mt-20 lg:px-44 sm:mt-20'>

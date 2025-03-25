@@ -12,13 +12,13 @@ const Result = () => {
           {/* ---------Left Side--------- */}
           <div className='flex flex-col'>
             <p className='font-semibold text-gray-600 mb-2'>Original</p>
-            <img className='rounded-lg border border-gray-300' src={image ? URL.createObjectURL(image):''} alt="" />
+            <img className='rounded-lg border border-gray-300' src={image ? URL.createObjectURL(image): null} alt="" />
           </div>
           {/* ---------Right Side--------- */}
           <div className='flex flex-col'>
             <p className='font-semibold text-gray-600 mb-2'>Background Removed</p>
             <div className='rounded-lg border  border-gray-300 h-full relative bg-layer overflow-hidden'>
-              <img src={resultImage ? resultImage : ""} alt="" />
+              <img src={resultImage ? resultImage :null} alt="" />
               {
                   !resultImage && image && <div className='absolute right-1/2 bottom-1/2 transform translate-x-1/2 translate-y-1/2'>
                   <div className='border-6 border-blue-700 rounded-full h-12 w-12 border-t-transparent animate-spin'></div>

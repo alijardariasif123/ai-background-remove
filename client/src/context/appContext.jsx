@@ -13,8 +13,6 @@ const AppContextProvider = (props) => {
     const [image, setImage] = useState(false)
     const [resultImage, setResultImage] = useState(false)
 
-    console.log(resultImage);
-
     const backendUrl = import.meta.env.VITE_BACKEND_URL
     const navigate = useNavigate()
 
@@ -60,7 +58,7 @@ const AppContextProvider = (props) => {
             } else {
                 toast.error(data.message)
                 data.creditBalance && setCredit(data.creditBalance)
-                if(data.creditBalance < 1){
+                if(data.creditBalance === 0){
                     navigate('/buy')
                 }
             }

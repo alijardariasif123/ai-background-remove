@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 
-//Middleware to check if the user is authenticated or not
+// Middleware to check if the user is authenticated or not
 const authUser = async (req, res, next) => {
     try {
         const {token} = req.headers
@@ -20,3 +20,4 @@ const authUser = async (req, res, next) => {
 }
 
 export default authUser;
+
