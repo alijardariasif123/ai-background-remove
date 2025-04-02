@@ -112,7 +112,7 @@
 }
 
 .button:hover {
-    transform: scale(1.08);
+    transform: scale(1.05);
 }
 
 /* Background Selector Styling */
@@ -165,8 +165,8 @@
 }
 
 .color-box:hover {
-    transform: scale(1.12);
-    border: 2px solid gray;
+    transform: scale(1.05);
+    border: 1px solid gray;
 }
 
 /* Search Box */
@@ -180,7 +180,7 @@
     margin-top: 24px;
     width: 100%;
     /* Ensures full width */
-    max-width: 900px;
+    max-width: 1000px;
     /* Adjust based on your design */
 }
 

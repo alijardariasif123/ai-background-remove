@@ -107,10 +107,10 @@ const Result = () => {
 
       {/* Buttons */}
       <div className="buttons-container">
+      <input className="upload-input" onChange={e => removeBg(e.target.files[0])} type="file" accept="image/*" id="upload" hidden />
         <label htmlFor="upload3" className="button upload-btn">
           Try another image
         </label>
-        <input type="file" accept="image/*" id="upload3" className="hidden" onChange={(e) => removeBg(e.target.files[0])} />
         <button onClick={() => setBackground(null)} className="button reset-btn">
           Reset Background
         </button>
