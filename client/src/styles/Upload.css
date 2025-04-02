@@ -1,0 +1,68 @@
+/* 📂 styles/Upload.css */
+
+/* 🌟 Upload Section */
+.upload-container {
+    padding-bottom: 4rem;
+}
+
+.upload-title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    padding: 1.5rem 0;
+}
+
+@media (min-width: 768px) {
+    .upload-title {
+        font-size: 2rem;
+        padding: 4rem 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .upload-title {
+        font-size: 2.5rem;
+    }
+}
+
+/* 🌈 Upload Button */
+.upload-btn-container {
+    text-align: center;
+    margin-bottom: 6rem;
+}
+
+.upload-input {
+    display: none;
+}
+
+.upload-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 2rem;
+    border-radius: 999px;
+    background: linear-gradient(to right, #2563eb, #a21caf);
+    cursor: pointer;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.upload-label:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(162, 28, 175, 0.3);
+}
+
+.upload-icon {
+    width: 20px;
+}
+
+.upload-text {
+    color: white;
+    font-size: 0.875rem;
+}
+
+@media (min-width: 1024px) {
+    .upload-text {
+        font-size: 1rem;
+    }
+}

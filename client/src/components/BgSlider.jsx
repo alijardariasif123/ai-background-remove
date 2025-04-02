@@ -1,25 +1,50 @@
-import React, { useState } from 'react'
-import { assets } from '../assets/assets'
+import React, { useState } from 'react';
+import { assets } from '../assets/assets';
+import '../styles/BgSlider.css'; // Ensure you link the CSS file
 
 const BgSlider = () => {
-    const [sliderPosition, setSliderPosition] = useState(50) // Fixed typo: userState -> useState
-    const handleSliderChange = (e) => {
-        setSliderPosition(e.target.value) // Fixed typo: targe -> target
-    }
-  return (
-    <div className='pb-10 md:py-20 mx-2'>
-        {/* title  */}
-        <h1 className='mb-12 sm:mb-20 text-center text-2xl md:text-3xl lg:text-4xl mt-4 font-semibold'>Remove Background With High <br/> Quality and Accuracy</h1>
-        <div className='relative w-full max-w-3xl overflow-hidden mx-auto rounded-xl'>
-            {/* Background Image */}
-            <img src={assets.image_w_bg} style={{clipPath:`inset(0 ${100.2 - sliderPosition}% 0 0)`}} alt='' />
-            {/* Forground Image */}
-            <img  className='absolute top-0 left-0 w-full h-full' src={assets.image_wo_bg} style={{clipPath:`inset(0 0 0 ${sliderPosition}%)`}} alt='' />
-            {/* Slider */}
-            <input className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full z-10 slider' type="range" min="0" max="100" value={sliderPosition} onChange={handleSliderChange} />
-        </div>
-    </div>
-  )
-}
+    const [sliderPosition, setSliderPosition] = useState(50);
 
-export default BgSlider
+    const handleSliderChange = (e) => {
+        setSliderPosition(e.target.value);
+    };
+
+    return (
+        <div className="bg-slider-container">
+            {/* Title */}
+            <h1 className="bg-slider-title">
+                Remove Background With High <br /> Quality and Accuracy
+            </h1>
+            
+            <div className="bg-slider-wrapper">
+                {/* Background Image */}
+                <img 
+                    src={assets.image_w_bg} 
+                    className="bg-slider-image" 
+                    style={{ clipPath: `inset(0 ${100.2 - sliderPosition}% 0 0)` }} 
+                    alt="Background" 
+                />
+                
+                {/* Foreground Image */}
+                <img 
+                    src={assets.image_wo_bg} 
+                    className="bg-slider-foreground" 
+                    style={{ clipPath: `inset(0 0 0 ${sliderPosition}%)` }} 
+                    alt="Foreground" 
+                />
+                
+                {/* Slider */}
+                <input 
+                    type="range" 
+                    min="0" 
+                    max="100" 
+                    value={sliderPosition} 
+                    onChange={handleSliderChange} 
+                    className="bg-slider-range" 
+                />
+            </div>
+        </div>
+    );
+};
+
+export default BgSlider;

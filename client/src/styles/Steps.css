@@ -1,0 +1,163 @@
+/* Main Container */
+.steps-container {
+    margin: 0 1rem;
+    padding: 5rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+    .steps-container {
+        margin: 0 auto;
+        max-width: 1100px;
+        padding: 5rem 0;
+    }
+}
+
+/* Animated Background Glow */
+.steps-container::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 300px;
+    height: 300px;
+    filter: blur(100px);
+    animation: glowMove 5s infinite alternate;
+}
+
+.steps-container::after {
+    content: "";
+    position: absolute;
+    bottom: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    filter: blur(100px);
+    animation: glowMove 6s infinite alternate-reverse;
+}
+
+@keyframes glowMove {
+    from {
+        transform: translateY(20px);
+    }
+    to {
+        transform: translateY(-20px);
+    }
+}
+
+/* Heading */
+.steps-heading {
+    font-size: 1.75rem;
+    font-weight: 700;
+    background: linear-gradient(to right, #007bff, #ff00ff);
+    -webkit-background-clip: text;
+    color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .steps-heading {
+        font-size: 2.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .steps-heading {
+        font-size: 3rem;
+    }
+}
+
+/* Steps Wrapper */
+.steps-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 5rem;
+}
+
+@media (min-width: 1280px) {
+    .steps-wrapper {
+        margin-top: 6rem;
+    }
+}
+
+/* Step Card */
+.step-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 2rem;
+    padding-bottom: 2.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.step-card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Floating Gradient Effect */
+.step-card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+    transition: opacity 0.4s ease;
+    opacity: 0;
+}
+
+.step-card:hover::before {
+    opacity: 1;
+}
+
+/* Icon */
+.step-icon {
+    max-width: 42px;
+    transition: transform 0.3s ease;
+}
+
+.step-card:hover .step-icon {
+    transform: rotate(-10deg) scale(1.1);
+}
+
+/* Step Content */
+.step-content {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: black;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Step Description */
+.step-text {
+    font-size: 0.9rem;
+    color: rgba(94, 89, 89, 0.8);
+    margin-top: 0.5rem;
+    line-height: 1.5;
+}
+
+/* Step Number */
+.step-number {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
