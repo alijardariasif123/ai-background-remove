@@ -100,14 +100,14 @@ const Result = () => {
               <div className="loader"></div>
             </div>
           )}
-          <canvas ref={canvasRef} className="hidden"></canvas>
-          {finalImage && <img src={finalImage} className="image final-image" alt="Final Preview" />}
+          <canvas ref={canvasRef} className=" image hidden"></canvas>
+          {/* {finalImage && <img src={finalImage} className="" alt="Final Preview" />} */}
         </div>
       </div>
 
       {/* Buttons */}
       <div className="buttons-container">
-      <input className="upload-input" onChange={e => removeBg(e.target.files[0])} type="file" accept="image/*" id="upload" hidden />
+      <input className="upload-input" onChange={e => removeBg(e.target.files[0])} type="file" accept="image/*" id="upload3" hidden />
         <label htmlFor="upload3" className="button upload-btn">
           Try another image
         </label>
