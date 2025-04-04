@@ -87,67 +87,71 @@ const Result = () => {
 
   return (
     <div className="container">
-    <div className="image-box">
-      <div className="image-grid">
-        <div className="image-container">
-          <p className="image-title">Original</p>
-          <img className="image" src={image ? URL.createObjectURL(image) : null} alt="Original" />
-        </div>
-        <div className="image-container">
-          <p className="image-title">Final Image</p>
-          {isLoading && (
-            <div className="loader-overlay">
-              <div className="loader"></div>
+      <div className="image-box">
+        <div className="image-grid">
+          <div className="image-container">
+            <p className="image-title">Original</p>
+            <img className="image" src={image ? URL.createObjectURL(image) : null} alt="Original" />
+          </div>
+          {(isLoading || finalImage) && (
+            <div className="image-container">
+              <p className="image-title">Final Image</p>
+              {isLoading && (
+                <div className="loader-overlay">
+                  <div className="loader"></div>
+                </div>
+              )}
+              <canvas ref={canvasRef} className="image hidden"></canvas>
+              {/* Optional: Show preview after image is generated */}
+              {/* finalImage && <img src={finalImage} className="image" alt="Final Preview" /> */}
             </div>
           )}
-          <canvas ref={canvasRef} className=" image hidden"></canvas>
-          {/* {finalImage && <img src={finalImage} className="" alt="Final Preview" />} */}
-        </div>
-      </div>
 
-      {/* Buttons */}
-      <div className="buttons-container">
-      <input className="upload-input" onChange={e => removeBg(e.target.files[0])} type="file" accept="image/*" id="upload3" hidden />
-        <label htmlFor="upload3" className="button upload-btn">
-          Try another image
-        </label>
-        <button onClick={() => setBackground(null)} className="button reset-btn">
-          Reset Background
-        </button>
-        <button onClick={downloadImage} className="button download-btn">
-          Download image
-        </button>
-      </div>
-
-      {/* Background Selection UI */}
-      <div className="background-selector">
-        <p className="background-title">🎨 Choose a Background</p>
-
-        {/* Color Palette */}
-        <div className="color-palette">
-          {[
-            "#0F0F0F", "#1C1C1C", "#2F3640", "#4B4B4B", "#F5F5F5", "#EAEAEA",
-            "#D6D6D6", "#BDC3C7", "#3498DB", "#F39C12", "#16A085"
-          ].map((color) => (
-            <div key={color} className="color-box" style={{ backgroundColor: color }} onClick={() => setBackground(color)}></div>
-          ))}
         </div>
 
-        {/* Search Box */}
-        <div className="search-box">
-          <input type="text" placeholder="🔍 Search backgrounds..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="search-input" />
-          <button onClick={fetchImages} className="search-btn">Search</button>
+        {/* Buttons */}
+        <div className="buttons-container">
+          <input className="upload-input" onChange={e => removeBg(e.target.files[0])} type="file" accept="image/*" id="upload3" hidden />
+          <label htmlFor="upload3" className="button upload-btn">
+            Try another image
+          </label>
+          <button onClick={() => setBackground(null)} className="button reset-btn">
+            Reset Background
+          </button>
+          <button onClick={downloadImage} className="button download-btn">
+            Download image
+          </button>
         </div>
 
-        {/* Background Images */}
-        <div className="background-images">
-          {bgImages.map((img) => (
-            <img key={img.id} src={img.src.small} className="background-image" onClick={() => setBackground(img.src.large)} alt="Background" />
-          ))}
+        {/* Background Selection UI */}
+        <div className="background-selector">
+          <p className="background-title">🎨 Choose a Background</p>
+
+          {/* Color Palette */}
+          <div className="color-palette">
+            {[
+              "#0F0F0F", "#1C1C1C", "#2F3640", "#4B4B4B", "#F5F5F5", "#EAEAEA",
+              "#D6D6D6", "#BDC3C7", "#3498DB", "#F39C12", "#16A085"
+            ].map((color) => (
+              <div key={color} className="color-box" style={{ backgroundColor: color }} onClick={() => setBackground(color)}></div>
+            ))}
+          </div>
+
+          {/* Search Box */}
+          <div className="search-box">
+            <input type="text" placeholder="🔍 Search backgrounds..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="search-input" />
+            <button onClick={fetchImages} className="search-btn">Search</button>
+          </div>
+
+          {/* Background Images */}
+          <div className="background-images">
+            {bgImages.map((img) => (
+              <img key={img.id} src={img.src.small} className="background-image" onClick={() => setBackground(img.src.large)} alt="Background" />
+            ))}
+          </div>
         </div>
       </div>
     </div>
-  </div>
   );
 };
 
