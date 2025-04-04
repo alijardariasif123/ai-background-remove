@@ -1,18 +1,19 @@
 /* Footer Container */
 .footer-container {
-    height: 25px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 3rem;
-    background: linear-gradient(to right, #f8f9fa, #e2e8f0); /* Gradient Background */
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
+    background: linear-gradient(to right, #f8f9fa, #e2e8f0);
     border-top: 2px solid #ddd;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    row-gap: 1rem;
 }
 
 /* Logo */
 .footer-logo {
-    width: 180px;
+    width: 160px;
     transition: transform 0.3s ease-in-out;
 }
 
@@ -23,36 +24,69 @@
 /* Copyright Text */
 .footer-text {
     flex: 1;
-    padding-left: 1rem;
     font-size: 0.9rem;
     color: #4a5568;
     font-weight: 500;
     text-align: center;
-}
-
-/* Hide text on small screens */
-@media (max-width: 640px) {
-    .footer-text {
-        display: none;
-    }
+    padding: 0 1rem;
 }
 
 /* Social Icons Container */
 .footer-icons {
     display: flex;
     gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 /* Individual Social Icons */
 .footer-icon {
-    width: 38px;
+    width: 36px;
     transition: transform 0.3s ease-in-out, opacity 0.3s;
     filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
 }
 
-/* Hover Effect on Icons */
 .footer-icon:hover {
     transform: translateY(-3px) scale(1.1);
     opacity: 0.85;
     filter: drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1.5rem 1rem;
+    }
+
+    .footer-logo {
+        margin-bottom: 0.5rem;
+    }
+
+    .footer-text {
+        order: 2;
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+    }
+
+    .footer-icons {
+        order: 3;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-text {
+        font-size: 0.75rem;
+    }
+
+    .footer-logo {
+        width: 140px;
+    }
+
+    .footer-icon {
+        width: 32px;
+    }
 }
