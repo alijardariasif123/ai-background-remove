@@ -51,23 +51,23 @@
 
 .image {
     border-radius: 10px;
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     width: 100%;
     height: auto;
 }
 
-/* Loader */
+/* Loader Overlay */
 .loader-overlay {
     position: relative;
-    inset: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    top: 150px;
     background: rgba(255, 255, 255, 0.7);
     border-radius: 20px;
+    z-index: 10;
 }
 
+/* Loader Spinner */
 .loader {
     border: 5px solid #007bff;
     border-top: 5px solid transparent;
@@ -77,14 +77,30 @@
     animation: spin 1s linear infinite;
 }
 
+/* Animation */
 @keyframes spin {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
 }
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+    .loader {
+        height: 40px;
+        width: 40px;
+        border-width: 4px;
+    }
+
+    .loader-overlay {
+        border-radius: 14px;
+    }
+}
+
 
 /* Buttons Container */
 .buttons-container {
