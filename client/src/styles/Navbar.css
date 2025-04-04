@@ -46,15 +46,16 @@
     align-items: center;
     gap: 0.5rem;
     background: linear-gradient(to right, #2563eb, #c026d3);
-    padding: 2px 6px;
+    padding: 2px 16px;
     border-radius: 50px;
     transition: transform 0.6s ease, box-shadow 0.3s ease;
     border: none;
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 140px;
 }
 
-@media (min-width: 640px) {
+@media (max-width: 640px) {
     .credit-btn {
         padding: 0px 28px;
     }
